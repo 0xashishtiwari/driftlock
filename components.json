@@ -1,0 +1,8 @@
+{
+  "namespace": "driftlock",
+  "components": [],
+  "records": {},
+  "modules": {
+    "@chaiui": "https://ui.chaicode.com/r/{name}.json"
+  }
+}
