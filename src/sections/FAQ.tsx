@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 
@@ -12,14 +13,15 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const reduceMotion = useReducedMotion()
 
   return (
     <section id="faq" className="mx-auto max-w-6xl px-6 py-20 sm:px-12 sm:py-28">
       <Reveal>
       <SectionHeading
         eyebrow="FAQ"
-        title="Answers before you start."
-        description="A quick overview of Driftlock's workflow and fit."
+        title={<><span className="highlight">Answers</span> before you start.</>}
+        description={<>A quick overview of Driftlock's workflow and <span className="highlight">fit.</span></>}
       />
       </Reveal>
       <Reveal className="mt-10" delay={0.08}>
@@ -30,6 +32,7 @@ export default function FAQ() {
               type="button"
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
               aria-expanded={openIndex === index}
+              aria-controls={`faq-answer-${index}`}
               className="grid w-full cursor-pointer grid-cols-[3rem_1fr_auto] items-center gap-3 py-5 text-left font-montserrat font-medium transition-colors duration-200 hover:text-neutral-500 sm:grid-cols-[4.5rem_1fr_auto] sm:py-6"
             >
               <span className="font-mono text-xs text-neutral-400">0{index + 1}</span>
@@ -38,9 +41,22 @@ export default function FAQ() {
                 <ChevronDown className="size-4" />
               </span>
             </button>
-            {openIndex === index && (
-              <p className="ml-[3rem] max-w-2xl pb-6 pr-12 text-sm leading-6 text-neutral-600 sm:ml-[4.5rem] dark:text-neutral-400">{answer}</p>
-            )}
+            <AnimatePresence initial={false}>
+              {openIndex === index && (
+                <motion.div
+                  id={`faq-answer-${index}`}
+                  initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
+                >
+                  <p className="ml-[3rem] max-w-2xl pb-6 pr-12 text-sm leading-6 text-neutral-600 sm:ml-[4.5rem] dark:text-neutral-400">
+                    {answer}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
       </div>

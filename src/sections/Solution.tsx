@@ -22,7 +22,7 @@ const steps = [
   },
 ] as const
 
-function Preview({ active }: { active: number }) {
+function Preview({ active, reduceMotion }: { active: number; reduceMotion: boolean }) {
   return (
     <div className="relative min-h-[340px] overflow-hidden rounded-lg border border-neutral-800/70 bg-[#0d0d0d] sm:min-h-[360px]">
       <div className="flex h-11 items-center justify-between border-b border-neutral-800/70 px-4">
@@ -40,10 +40,10 @@ function Preview({ active }: { active: number }) {
         {active === 0 && (
           <motion.div
             key="detect"
-            initial={{ opacity: 0, y: 10 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
             className="p-5 sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
@@ -71,10 +71,10 @@ function Preview({ active }: { active: number }) {
         {active === 1 && (
           <motion.div
             key="explain"
-            initial={{ opacity: 0, y: 10 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
             className="p-5 sm:p-6"
           >
             <p className="font-mono text-[11px] text-neutral-500">Affected dependency map</p>
@@ -100,10 +100,10 @@ function Preview({ active }: { active: number }) {
         {active === 2 && (
           <motion.div
             key="fix"
-            initial={{ opacity: 0, y: 10 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
             className="p-5 sm:p-6"
           >
             <div className="flex items-center justify-between">
@@ -123,10 +123,10 @@ function Preview({ active }: { active: number }) {
         {active === 3 && (
           <motion.div
             key="review"
-            initial={{ opacity: 0, y: 10 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
             className="p-5 sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
@@ -164,20 +164,20 @@ export default function Solution() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section id="solution" className="border-y border-neutral-800/30 bg-neutral-900/20">
+    <section id="solution" className="border-y border-amber-900/10 bg-amber-50/35 dark:border-orange-50/10 dark:bg-white/[0.015]">
       <div className="mx-auto max-w-6xl px-6 py-20 sm:px-12 sm:py-28">
         <Reveal>
           <SectionHeading
             eyebrow="From signal to shipped fix"
-            title="Detect, explain, fix, review."
-            description="Driftlock turns an upstream API change into a pull request your team can review."
+            title={<>Detect, explain, <span className="highlight">fix and review.</span></>}
+            description={<>Driftlock turns an upstream API change into a pull request your team can <span className="highlight">review with confidence.</span></>}
           />
         </Reveal>
 
         <Reveal className="mt-12" delay={0.08}>
-          <div className="grid overflow-hidden rounded-lg border border-neutral-800/70 lg:grid-cols-[0.82fr_1.18fr]">
-            <div className="relative border-b border-neutral-800/70 lg:border-b-0 lg:border-r">
-              <div className="absolute bottom-0 left-[27px] top-0 hidden w-px bg-neutral-800 lg:block" />
+          <div className="card-chai grid overflow-hidden lg:grid-cols-[0.82fr_1.18fr]">
+            <div className="relative border-b border-amber-900/10 dark:border-orange-50/10 lg:border-b-0 lg:border-r">
+              <div className="absolute bottom-0 left-[27px] top-0 hidden w-px bg-neutral-300 dark:bg-neutral-800 lg:block" />
               {steps.map((step, index) => (
                 <button
                   key={step.title}
@@ -187,15 +187,15 @@ export default function Solution() {
                   onClick={() => setActive(index)}
                   aria-pressed={active === index}
                   className={`relative grid w-full grid-cols-[54px_1fr] items-start text-left transition-colors duration-200 ${
-                    index !== steps.length - 1 ? 'border-b border-neutral-800/70' : ''
-                  } ${active === index ? 'bg-white/[0.035]' : 'hover:bg-white/[0.018]'}`}
+                    index !== steps.length - 1 ? 'border-b border-amber-900/10 dark:border-orange-50/10' : ''
+                  } ${active === index ? 'bg-neutral-900/[0.035] dark:bg-white/[0.035]' : 'hover:bg-neutral-900/[0.02] dark:hover:bg-white/[0.018]'}`}
                 >
                   <span className="relative z-10 flex h-full min-h-24 items-start justify-center pt-6">
                     <span
                       className={`grid size-7 place-items-center rounded-full border font-mono text-[10px] transition-colors ${
                         active === index
-                          ? 'border-orange-100/70 bg-orange-900/40 text-orange-100'
-                          : 'border-neutral-700 bg-[#101010] text-neutral-500'
+                          ? 'border-neutral-500 bg-neutral-900 text-orange-100 dark:border-orange-100/70 dark:bg-neutral-800'
+                          : 'border-neutral-300 bg-white/70 text-neutral-500 dark:border-neutral-700 dark:bg-neutral-950'
                       }`}
                     >
                       {String(index + 1).padStart(2, '0')}
@@ -217,7 +217,7 @@ export default function Solution() {
             </div>
 
             <div className="p-3 sm:p-4">
-              <Preview active={active} />
+              <Preview active={active} reduceMotion={!!reduceMotion} />
             </div>
           </div>
         </Reveal>

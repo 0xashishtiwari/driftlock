@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
+import Reveal from '../components/Reveal'
 
 export default function CTA() {
   const [submitted, setSubmitted] = useState(false)
@@ -11,22 +12,23 @@ export default function CTA() {
 
   return (
     <section id="demo" className="mx-auto max-w-6xl px-6 pb-20 sm:px-12 sm:pb-28">
+      <Reveal>
       <div className="cta-grid relative grid overflow-hidden rounded-[28px] bg-neutral-950 text-white md:grid-cols-[1.08fr_0.72fr]">
         <div className="relative z-10 px-6 py-10 sm:px-12 sm:py-14">
-          <p className="mb-5 flex items-center gap-3 font-mono text-xs tracking-[0.12em] text-orange-100">
-            <span className="h-px w-7 bg-orange-100/70" />
+          <p className="mb-5 flex items-center gap-3 font-mono text-xs tracking-[0.12em] text-neutral-300">
+            <span className="h-px w-7 bg-neutral-500" />
             Get started
           </p>
           <h2 className="font-montserrat max-w-xl text-[34px] font-semibold leading-[1.02] tracking-[-0.055em] sm:text-5xl">
-            Stop firefighting third-party API changes.
+            Stop firefighting <span className="highlight text-orange-100">third-party API changes.</span>
           </h2>
           <p className="mt-5 max-w-md text-base leading-7 text-neutral-400">
-            See how Driftlock turns drift detection into a fixable pull request.
+            See how Driftlock turns drift detection into a <span className="highlight text-orange-100">reviewable pull request.</span>
           </p>
           <div className="mt-8 space-y-3 text-sm text-neutral-300">
             {['Detect drift across external dependencies', 'Map impact to exact code paths', 'Review a proposed fix in a pull request'].map((item) => (
               <div key={item} className="flex items-center gap-3">
-                <span className="grid size-5 place-items-center rounded-full border border-orange-100/20 text-xs text-orange-100">✓</span>
+                <span className="grid size-5 place-items-center rounded-full border border-neutral-600 text-xs text-neutral-200">✓</span>
                 {item}
               </div>
             ))}
@@ -42,7 +44,7 @@ export default function CTA() {
               <button
                 type="button"
                 onClick={() => setSubmitted(false)}
-                className="mt-6 self-start text-sm text-orange-100 underline decoration-orange-100/40 underline-offset-4 hover:text-white"
+                className="mt-6 self-start text-sm text-neutral-300 underline decoration-neutral-500 underline-offset-4 hover:text-white"
               >
                 Send another request
               </button>
@@ -58,7 +60,7 @@ export default function CTA() {
                   required
                   autoComplete="name"
                   placeholder="Alex Morgan"
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-orange-100/50"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-neutral-300/70"
                 />
               </div>
               <div>
@@ -70,7 +72,7 @@ export default function CTA() {
                   required
                   autoComplete="email"
                   placeholder="alex@company.com"
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-orange-100/50"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-neutral-300/70"
                 />
               </div>
               <div>
@@ -82,7 +84,7 @@ export default function CTA() {
                   required
                   autoComplete="organization"
                   placeholder="Company name"
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-orange-100/50"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-neutral-300/70"
                 />
               </div>
               <button type="submit" className="font-montserrat mt-2 flex w-full items-center justify-center gap-2 rounded-none rounded-tr-lg rounded-bl-lg bg-white px-5 py-3.5 text-sm font-semibold text-neutral-950 transition-transform duration-200 hover:-translate-y-0.5">
@@ -94,6 +96,7 @@ export default function CTA() {
           </div>
         </div>
       </div>
+      </Reveal>
     </section>
   )
 }

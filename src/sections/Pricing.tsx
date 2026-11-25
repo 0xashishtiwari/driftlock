@@ -1,4 +1,5 @@
 import { ArrowUpRight, Check } from 'lucide-react'
+import { useReducedMotion } from 'motion/react'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 
@@ -9,20 +10,22 @@ const plans = [
 ]
 
 export default function Pricing() {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <section id="pricing" className="border-y border-neutral-800/30">
+    <section id="pricing" className="border-y border-amber-900/10 bg-amber-50/25 dark:border-orange-50/10 dark:bg-transparent">
       <div className="mx-auto max-w-6xl px-6 py-20 sm:px-12 sm:py-28">
         <Reveal>
         <SectionHeading
           eyebrow="Pricing"
-          title="Choose the level of coverage your team needs."
-          description="Every plan is tailored to your API surface and workflow."
+          title={<>Choose the level of <span className="highlight">coverage</span> your team needs.</>}
+          description={<>Every plan is tailored to your API surface and <span className="highlight">workflow.</span></>}
         />
         </Reveal>
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {plans.map((plan, index) => (
             <Reveal key={plan.name} delay={index * 0.08}>
-            <article className={`card-chai flex min-h-96 flex-col p-6 sm:p-8 transition-transform duration-300 hover:-translate-y-1 ${index === 1 ? 'lg:-translate-y-3' : ''}`}>
+            <article className={`card-chai flex min-h-96 flex-col p-6 transition-transform duration-300 sm:p-8 ${reduceMotion ? '' : 'hover:-translate-y-1'} ${index === 1 ? 'lg:-translate-y-3' : ''}`}>
               <div className="mb-8">
                 <h3 className="font-montserrat text-xl font-medium tracking-tight">{plan.name}</h3>
                 <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{plan.copy}</p>

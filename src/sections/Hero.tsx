@@ -1,15 +1,34 @@
 import { ArrowRight, ArrowUpRight, GitPullRequest, ShieldCheck } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 
+const headlineContainer = {
+  hidden: {},
+  visible: { transition: { delayChildren: 0.08, staggerChildren: 0.075 } },
+}
+
+const headlineWord = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const headlineColorWord = {
+  hidden: { opacity: 0, y: 20, color: 'var(--foreground)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    color: ['var(--foreground)', 'var(--highlight)', 'var(--foreground)'],
+  },
+}
+
 export default function Hero() {
   const reduceMotion = useReducedMotion()
 
   return (
     <header id="top" className="relative mx-auto max-w-6xl px-6 pb-20 pt-36 sm:px-12 sm:pb-28 sm:pt-44">
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: reduceMotion ? 0 : 0.5 }}
         className="mx-auto max-w-4xl text-center"
       >
         <motion.div
@@ -37,9 +56,20 @@ export default function Hero() {
             API reliability for modern teams
           </motion.span>
         </motion.div>
-        <h1 className="font-montserrat text-[42px] font-semibold leading-[1.02] tracking-[-0.055em] md:text-6xl lg:text-7xl">
-          Catch API drift before it breaks production.
-        </h1>
+        <motion.h1
+          className="font-montserrat text-[42px] font-semibold leading-[1.02] tracking-[-0.055em] md:text-6xl lg:text-7xl"
+          initial={reduceMotion ? false : 'hidden'}
+          whileInView={reduceMotion ? undefined : 'visible'}
+          viewport={{ once: true, amount: 0.7 }}
+          variants={headlineContainer}
+        >
+          <motion.span variants={headlineColorWord}>Catch </motion.span>
+          <motion.span variants={headlineWord} className="highlight">API drift</motion.span>{' '}
+          <motion.span variants={headlineColorWord}>before </motion.span>
+          <motion.span variants={headlineColorWord}>it </motion.span>
+          <motion.span variants={headlineColorWord}>breaks </motion.span>
+          <motion.span variants={headlineColorWord}>production.</motion.span>
+        </motion.h1>
         <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-600 md:text-xl dark:text-neutral-400">
           Driftlock detects upstream API changes, explains the code impact, and opens a pull request with the fix.
           {' '}<span className="highlight">Monitor with confidence.</span>
@@ -63,16 +93,16 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15, duration: 0.6 }}
+        transition={{ delay: reduceMotion ? 0 : 0.15, duration: reduceMotion ? 0 : 0.6 }}
         className="mx-auto mt-14 max-w-4xl"
       >
         <div className="grid grid-cols-1 gap-3 text-left sm:grid-cols-6 sm:grid-rows-2">
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: reduceMotion ? 0 : 0.25, duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="card-chai min-h-44 p-5 sm:col-span-4 sm:row-span-1"
           >
             <div className="flex items-center justify-between">
@@ -88,26 +118,30 @@ export default function Hero() {
                       ? 'bg-purple-500/70'
                       : 'bg-neutral-300/80 dark:bg-neutral-700/80'
                   }`}
-                  initial={{ height: 0 }}
+                  initial={reduceMotion ? { height: `${height}%` } : { height: 0 }}
                   animate={{ height: `${height}%` }}
-                  transition={{ delay: 0.45 + index * 0.045, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    delay: reduceMotion ? 0 : 0.45 + index * 0.045,
+                    duration: reduceMotion ? 0 : 0.65,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 />
               ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: reduceMotion ? 0 : 0.35, duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="card-chai min-h-44 p-5 sm:col-span-2"
           >
             <ShieldCheck className="size-5 text-green-600 dark:text-green-400" />
             <motion.p
               className="mt-10 font-montserrat text-4xl font-medium tracking-tight"
-              initial={{ y: 18, opacity: 0 }}
+              initial={reduceMotion ? false : { y: 18, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.65, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: reduceMotion ? 0 : 0.65, duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="text-neutral-950 dark:text-neutral-100">14</span>
             </motion.p>
@@ -115,17 +149,17 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: reduceMotion ? 0 : 0.45, duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="card-chai p-5 sm:col-span-3"
           >
             <p className="font-mono text-[11px] text-neutral-500">Latest change</p>
             <motion.div
               className="mt-5 flex items-end justify-between"
-              initial={{ y: 16, opacity: 0 }}
+              initial={reduceMotion ? false : { y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: reduceMotion ? 0 : 0.7, duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <div>
                 <p className="font-mono text-sm">GET /v2/invoices</p>
@@ -136,17 +170,17 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: reduceMotion ? 0 : 0.55, duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="card-chai p-5 sm:col-span-3"
           >
             <p className="font-mono text-[11px] text-neutral-500">Remediation</p>
             <motion.div
               className="mt-5 flex items-end justify-between"
-              initial={{ y: 16, opacity: 0 }}
+              initial={reduceMotion ? false : { y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.78, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: reduceMotion ? 0 : 0.78, duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
               <div>
                 <p className="font-mono text-sm">billing-client</p>

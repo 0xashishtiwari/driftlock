@@ -16,8 +16,8 @@ export default function Problem() {
       <Reveal>
         <SectionHeading
           eyebrow="The problem"
-          title="API drift stays hidden until it becomes an outage."
-          description="Most teams discover upstream changes through failing tests or customer reports."
+          title={<>API drift stays hidden until it becomes an <span className="highlight">outage.</span></>}
+          description={<>Most teams discover upstream changes through failing tests or <span className="highlight">customer reports.</span></>}
           titleClassName="lg:whitespace-nowrap"
           containerClassName="max-w-full"
         />
@@ -33,9 +33,10 @@ export default function Problem() {
             d="M0 9 H13 M20 9 H47 M53 9 H80 M86 9 H100"
             fill="none"
             stroke="currentColor"
-            strokeWidth="0.35"
+            strokeWidth="1.2"
+            strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
-            className="text-neutral-800"
+            className="text-amber-900/70 dark:text-orange-50/45"
             initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.6 }}
@@ -45,9 +46,10 @@ export default function Problem() {
             d="M83 9 C88 9 88 14 93 14 H100"
             fill="none"
             stroke="currentColor"
-            strokeWidth="0.28"
+            strokeWidth="1"
+            strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
-            className="text-neutral-800/70"
+            className="text-amber-900/55 dark:text-orange-50/35"
             initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.6 }}
@@ -55,7 +57,7 @@ export default function Problem() {
           />
         </svg>
 
-        <div className="absolute bottom-0 left-[4px] top-[9px] w-px bg-neutral-800/80 md:hidden" />
+        <div className="absolute bottom-0 left-[4px] top-[9px] w-px bg-amber-900/45 dark:bg-orange-50/30 md:hidden" />
 
         <div className="grid gap-10 md:grid-cols-3 md:gap-0">
           {problems.map(([title, copy], index) => (
@@ -67,16 +69,16 @@ export default function Problem() {
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true, amount: 0.8 }}
                   transition={{ duration: reduceMotion ? 0 : 0.28, delay: reduceMotion ? 0 : 0.16 + index * 0.18 }}
-                  className="absolute -left-[1px] top-0 size-[9px] rounded-full border border-neutral-500 bg-[#0a0a0a] md:-top-[1px] md:left-0 dark:bg-neutral-950"
+                  className="absolute -left-[1px] top-0 size-[9px] rounded-full border border-amber-900/45 bg-background md:-top-[1px] md:left-0 dark:border-orange-50/35"
                 />
                 {index === 2 && (
                   <span className="absolute -left-[1px] top-0 hidden size-[9px] md:block">
-                    <span className="absolute left-[8px] top-[10px] h-px w-5 bg-neutral-800/70" />
+                    <span className="absolute left-[8px] top-[10px] h-px w-5 bg-amber-900/50 dark:bg-orange-50/35" />
                   </span>
                 )}
                 <div className="flex items-center gap-3">
                   <p className="font-mono text-[11px] text-neutral-600">0{index + 1}</p>
-                  {index === 1 && <span className="h-px w-7 bg-neutral-700/60" />}
+                  {index === 1 && <span className="h-px w-7 bg-amber-900/45 dark:bg-orange-50/30" />}
                 </div>
                 <h3 className="mt-7 font-montserrat text-xl font-medium tracking-tight">{title}</h3>
                 <p className="mt-3 max-w-xs text-sm leading-6 text-neutral-600 dark:text-neutral-400">{copy}</p>
