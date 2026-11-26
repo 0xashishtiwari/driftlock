@@ -1,4 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react'
+import { ArrowUpRight } from 'lucide-react'
+import { REPOSITORY_URL } from '../constants'
 
 export default function Footer() {
   const reduceMotion = useReducedMotion()
@@ -32,6 +34,15 @@ export default function Footer() {
         <div className="flex flex-col gap-2 py-5 text-xs text-neutral-500 dark:text-neutral-600 sm:flex-row sm:justify-between">
           <span>© 2026 Driftlock</span>
           <span>Detect, explain, fix, review</span>
+          <a
+            href={REPOSITORY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-neutral-700 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white"
+          >
+            View Repository
+            <ArrowUpRight className="size-3" />
+          </a>
         </div>
       </div>
     </footer>

@@ -1,5 +1,6 @@
-import { ArrowRight, ArrowUpRight, GitPullRequest, ShieldCheck } from 'lucide-react'
+import { ArrowUpRight, GitPullRequest, ShieldCheck } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
+import { REPOSITORY_URL } from '../constants'
 
 const headlineContainer = {
   hidden: {},
@@ -53,7 +54,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.28, duration: 0.4 }}
           >
-            API reliability for modern teams
+            Artifact-only MVP · Execution disabled
           </motion.span>
         </motion.div>
         <motion.h1
@@ -71,23 +72,18 @@ export default function Hero() {
           <motion.span variants={headlineColorWord}>production.</motion.span>
         </motion.h1>
         <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-600 md:text-xl dark:text-neutral-400">
-          Driftlock detects upstream API changes, explains the code impact, and opens a pull request with the fix.
-          {' '}<span className="highlight">Monitor with confidence.</span>
+          Phase 1 gate blocked until A06/Q06 acceptance evidence exists. Driftlock is currently scoped to artifacts;
+          {' '}<span className="highlight">execution is disabled.</span>
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#demo"
+            href={REPOSITORY_URL}
+            target="_blank"
+            rel="noreferrer"
             className="font-montserrat inline-flex w-full items-center justify-center gap-2 rounded-none rounded-tr-lg rounded-bl-lg bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 dark:bg-white dark:text-neutral-950 sm:w-auto"
           >
-            Book a demo
+            View Repository
             <ArrowUpRight className="size-4" />
-          </a>
-          <a
-            href="#solution"
-            className="btn-asym-mirror inline-flex w-full items-center justify-center gap-2 border border-neutral-300 px-5 py-3 text-sm font-medium transition-colors hover:border-neutral-500 dark:border-neutral-700 sm:w-auto"
-          >
-            See how it works
-            <ArrowRight className="size-4" />
           </a>
         </div>
       </motion.div>
@@ -98,6 +94,9 @@ export default function Hero() {
         transition={{ delay: reduceMotion ? 0 : 0.15, duration: reduceMotion ? 0 : 0.6 }}
         className="mx-auto mt-14 max-w-4xl"
       >
+        <p className="mb-3 text-center font-mono text-[11px] text-neutral-500">
+          Illustrative workflow preview · synthetic data · not a live system
+        </p>
         <div className="grid grid-cols-1 gap-3 text-left sm:grid-cols-6 sm:grid-rows-2">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 28 }}
@@ -107,7 +106,7 @@ export default function Hero() {
           >
             <div className="flex items-center justify-between">
               <p className="font-mono text-[11px] text-neutral-500">Drift timeline</p>
-              <span className="text-[11px] text-neutral-500">Last 24h</span>
+              <span className="text-[11px] text-neutral-500">Synthetic data</span>
             </div>
             <div className="mt-8 flex h-20 items-end gap-2" aria-label="API drift activity chart">
               {[42, 58, 36, 68, 52, 82, 48, 74, 64, 88, 56, 72].map((height, index) => (
@@ -145,7 +144,7 @@ export default function Hero() {
             >
               <span className="text-neutral-950 dark:text-neutral-100">14</span>
             </motion.p>
-            <p className="mt-2 text-sm text-neutral-500">APIs monitored</p>
+            <p className="mt-2 text-sm text-neutral-500">Example APIs</p>
           </motion.div>
 
           <motion.div
@@ -163,7 +162,7 @@ export default function Hero() {
             >
               <div>
                 <p className="font-mono text-sm">GET /v2/invoices</p>
-                <p className="mt-1 text-xs text-neutral-500">Response shape changed</p>
+                <p className="mt-1 text-xs text-neutral-500">Example response change</p>
               </div>
               <span className="text-xs text-red-600 dark:text-red-300">Breaking</span>
             </motion.div>
@@ -184,7 +183,7 @@ export default function Hero() {
             >
               <div>
                 <p className="font-mono text-sm">billing-client</p>
-                <p className="mt-1 text-xs text-neutral-500">Fix generated</p>
+                <p className="mt-1 text-xs text-neutral-500">Illustrative fix</p>
               </div>
               <GitPullRequest className="size-4 text-neutral-500" />
             </motion.div>

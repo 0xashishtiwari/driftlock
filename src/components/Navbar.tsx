@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Menu, Moon, Plane, Sun, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { createPortal } from 'react-dom'
+import { REPOSITORY_URL } from '../constants'
 
 const links = [
   { label: 'Features', href: '#features' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Use cases', href: '#use-cases' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -98,10 +99,13 @@ export default function Navbar() {
             {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
           <a
-            href="#demo"
-            className="hidden items-center rounded-lg px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white sm:inline-flex"
+            href={REPOSITORY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white sm:inline-flex"
           >
-            Book a demo
+            View Repository
+            <ArrowUpRight className="size-4" />
           </a>
           <button
             type="button"
@@ -134,11 +138,13 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#demo"
+                href={REPOSITORY_URL}
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 flex items-center justify-between rounded-none rounded-tr-lg rounded-bl-lg border border-neutral-300 px-3 py-3 text-sm font-medium text-neutral-950 dark:border-neutral-700 dark:text-white"
               >
-                Book a demo
+                View Repository
                 <ArrowUpRight className="size-4" />
               </a>
             </motion.div>

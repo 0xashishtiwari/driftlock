@@ -9,9 +9,9 @@ export default function Features() {
     <section id="features" className="mx-auto max-w-6xl px-6 py-20 sm:px-12 sm:py-28">
       <Reveal>
         <SectionHeading
-          eyebrow="Capabilities"
-          title={<>Everything needed to close the <span className="highlight">API drift loop.</span></>}
-          description={<>From first signal to a reviewable change, Driftlock keeps the workflow <span className="highlight">focused.</span></>}
+          eyebrow="Planned workflow · illustrative only"
+          title={<>Designed to close the <span className="highlight">API drift loop.</span></>}
+          description={<>These mockups show the intended flow; this artifact-only MVP does not monitor live APIs or execute changes.</>}
         />
       </Reveal>
 
@@ -33,7 +33,7 @@ export default function Features() {
                 </div>
                 <div className="mt-8 flex items-center gap-2 text-xs text-green-700 dark:text-green-400">
                   <span className="size-1.5 rounded-full border border-green-600 dark:border-green-400" />
-                  Monitoring active
+                  Synthetic preview
                 </div>
               </div>
               <div className="border-t border-amber-900/10 p-4 dark:border-orange-50/10 sm:border-l sm:border-t-0 sm:p-5">

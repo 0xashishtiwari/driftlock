@@ -168,9 +168,9 @@ export default function Solution() {
       <div className="mx-auto max-w-6xl px-6 py-20 sm:px-12 sm:py-28">
         <Reveal>
           <SectionHeading
-            eyebrow="From signal to shipped fix"
+            eyebrow="Illustrative workflow · synthetic example"
             title={<>Detect, explain, <span className="highlight">fix and review.</span></>}
-            description={<>Driftlock turns an upstream API change into a pull request your team can <span className="highlight">review with confidence.</span></>}
+            description={<>A preview of the intended review flow. This artifact-only MVP does not execute changes or open pull requests.</>}
           />
         </Reveal>
 

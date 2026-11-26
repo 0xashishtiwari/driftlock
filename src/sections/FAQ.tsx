@@ -5,9 +5,9 @@ import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 
 const faqs = [
-  ['What does Driftlock monitor?', 'Driftlock focuses on external third-party APIs and the production code they can silently change.'],
-  ['How is it different from API monitoring?', 'It turns a drift signal into a mapped impact and a proposed pull request, not just an alert.'],
-  ['Do we need an OpenAPI spec?', 'No. Driftlock can learn from observed traffic without requiring every API to have a formal specification.'],
+  ['What does Driftlock monitor today?', 'The current MVP is artifact-only and does not monitor live APIs. It illustrates a planned workflow for tracking upstream API changes.'],
+  ['How is it different from API monitoring?', 'The intended workflow maps an API change to affected code and a proposed fix. Runtime execution and pull-request creation are disabled in this MVP.'],
+  ['Do we need an OpenAPI spec?', 'Provider/runtime acceptance evidence is still pending, so supported inputs have not yet been validated.'],
   ['Who should use it first?', 'Platform teams that manage many third-party integrations and need to prevent integration surprises.'],
 ]
 
